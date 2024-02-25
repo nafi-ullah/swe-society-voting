@@ -29,38 +29,40 @@ candidateRouter.post("/api/candidates", async (req, res) => {
 
   candidateRouter.get("/api/get-candidates", async (req, res) => {
     try {
-      const messid = req.query.messid;
+      const votestatus = req.query.votestatus;
       //  console.log(messid);
-      const meals = await MealInfo.find({ messid: messid, date: formattedDate }); // jodi search functionality add korte hoy tobe ei find er moddhe search er character recieve korbe
+      const candidates = await CandidateInfo.find({ votestatus  }); // jodi search functionality add korte hoy tobe ei find er moddhe search er character recieve korbe
   
-      res.json(meals);
+      res.json(candidates);
     } catch (e) {
       res.status(500).json({ error: e.message });
     }
   });
-  //------------------------------------------------------------------------
-  // Auto meal post api in a time
-  mealRouter.post("/api/scheduled-meal", async (req, res) => {
-    try {
-      // ekhane name messID mealMenu mealCount recieve korbo jst,
-      // pore seta MealInfo er sathe time onujayi align kore nibo.
-      const { name, messid, mealMenu, count, comment } = req.body;
   
-      let pushMeal = new MealInfo({
-        name,
-        messid,
-        lunchMeal: mealMenu,
-        lunchCount: count,
-        lunchComment: comment,
-        date: formattedDate,
-      });
-  
-      pushMeal = await pushMeal.save();
-      return res.json(pushMeal);
-    } catch (e) {
-      return res.status(500).json({ error: e.message });
-    }
-  });
 
 
 module.exports = candidateRouter;
+
+
+// {
+//     "votestatus" : true,
+//     "year" : "2024",
+//     "candidateList": [
+//         {
+//          "candidateReg" : "2020831020",
+//     "candidatePost" : "Assistant General Secretary",
+//      "candidateName" : "Nixon",
+//     "candidateImage" : "http://imageurl.com",
+//      "candidateMarka" : "bamboo",
+//     "candidateMarkaImage" : "http://imageurl.com"
+//         },
+//         {
+//          "candidateReg" : "2020831020",
+//     "candidatePost" : "Assistant General Secretary",
+//      "candidateName" : "Arnob",
+//     "candidateImage" : "http://imageurl.com",
+//      "candidateMarka" : "bamboo",
+//     "candidateMarkaImage" : "http://imageurl.com"
+//         }
+//     ]
+// }
