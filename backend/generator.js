@@ -35,4 +35,21 @@ function getTime(timelen) {
   //return timeInHours;
 }
 
-module.exports = { generateString, getTime };
+function abbreviatePostName(postName) {
+    // Remove spaces from the post name
+    const withoutSpaces = postName.replace(/\s/g, '');
+  
+    // Generate abbreviation based on rules
+    const abbreviation = withoutSpaces.split('').map((char, index) => {
+      if (index === 0) {
+        return char.toLowerCase(); // Keep the first character in lowercase
+      } else if (char.toUpperCase() === char) {
+        return char.toLowerCase(); // Convert uppercase letters to lowercase
+      }
+      return ''; // Ignore lowercase letters
+    }).join('');
+  
+    return abbreviation;
+  }
+
+module.exports = { generateString, getTime, abbreviatePostName };
