@@ -53,6 +53,7 @@ authRouter.post("/api/range-pass", async (req, res) => {
      
         for (let regroll = from; regroll <= to; regroll++) {
             let pass = generateString(6);
+            let trimmed = pass.trim(); 
         
      
       const memberCredential = await Member.findOne({ regno: regroll });
@@ -61,7 +62,7 @@ authRouter.post("/api/range-pass", async (req, res) => {
         let member = new Member({
   
             regno: regroll,
-            password: pass
+            password: trimmed
       
           });
       
@@ -85,11 +86,12 @@ authRouter.post("/api/range-pass", async (req, res) => {
 
 
 authRouter.post("/api/signin", async (req, res) => {
+  const { regno, password } = req.body;
   
   try {
-    const { regno, password } = req.body;
+   
 
-    const memberCredential = await Member.findOne({ regno }); // Member hocche database er protinidhi, so eta diye database er sob operation kora hobe.
+    const memberCredential = await Member.findOne({ regno }); 
 
     if (!memberCredential) {
       return res
@@ -97,10 +99,9 @@ authRouter.post("/api/signin", async (req, res) => {
         .json({ error: "This regno is not found" });
     }
 
-    const isPassMatch = await bcryption.compare(
-      password,
-      memberCredential.password
-    );
+    const isPassMatch = password === memberCredential.password
+     console.log(password);
+     console.log(memberCredential.password);
 
     if (!isPassMatch) {
       return res.status(400).json({ msg: "password invalid" });

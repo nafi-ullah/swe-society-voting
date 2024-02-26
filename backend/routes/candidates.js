@@ -28,6 +28,8 @@ candidateRouter.post("/api/candidates", async (req, res) => {
       return res.status(500).json({ error: e.message });
     }
   });
+  //http://localhost:3000/api/get-candidates?post=assistant_general_secretary&year=2024
+  
 
   candidateRouter.get("/api/get-candidates", async (req, res) => {
     try {
