@@ -73,11 +73,20 @@ voterRouter.post("/api/votecast", async (req, res) => {
 
         const candIds = flattenedCandidates.map(individual => individual.candidateId);
 
+        let post = candIds[0].slice(10);
+         post = "general_secretary";
+         const id = "2019831029general_secretary";
+        let query = { [post]: id };
+        
+        const votes = await VoterInfo.find(query );
+            console.log(votes);
+
         for (let idno = 0; idno < candIds.length; idno++) {
             let post = candIds[idno].slice(10);
-
-            const votes = await VoterInfo.find({ candidatePost: post, candidateId: candIds[idno] } );
-            console.log(votes);
+           let query = { [post]: candIds[idno] };
+           
+           const votes = await VoterInfo.find(query );
+               console.log(`${candIds[idno]} got ====> ` + votes.length);
 
         }
         
