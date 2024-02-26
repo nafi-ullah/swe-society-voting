@@ -1,11 +1,12 @@
 const express = require("express");
 const VoterInfo = require("../models/voter");
+const CandidateInfo = require("../models/candidate");
 
 
-const voterRoter = express.Router();
+const voterRouter = express.Router();
 
 
-voterRoter.post("/api/votecast", async (req, res) => {
+voterRouter.post("/api/votecast", async (req, res) => {
 
     const {  
         regno, 
@@ -59,13 +60,28 @@ voterRoter.post("/api/votecast", async (req, res) => {
     }
   });
 
-  voterRoter.get("/api/get-candidates", async (req, res) => {
+
+
+//http://localhost:3000/api/vote-count?year=2024
+  voterRouter.get("/api/vote-count", async (req, res) => {
     try {
-      const votestatus = req.query.votestatus;
-      //  console.log(messid);
-      const candidates = await CandidateInfo.find({ votestatus  }); // jodi search functionality add korte hoy tobe ei find er moddhe search er character recieve korbe
+
+        const year = req.query.year;
+        const candidates = await CandidateInfo.find({year}); 
+        const allCandidates = candidates.map(candidate => candidate.candidateList);
+        const flattenedCandidates = allCandidates.flat();
+
+        const candIds = flattenedCandidates.map(individual => individual.candidateId);
+
+        
+        
+
+     
+     
+      
+    //  const candidates = await VoterInfo.find({ votestatus  }); // jodi search functionality add korte hoy tobe ei find er moddhe search er character recieve korbe
   
-      res.json(candidates);
+      res.json({candIds});
     } catch (e) {
       res.status(500).json({ error: e.message });
     }
@@ -73,6 +89,6 @@ voterRoter.post("/api/votecast", async (req, res) => {
   
 
 
-module.exports = voterRoter;
+module.exports = voterRouter;
 
 

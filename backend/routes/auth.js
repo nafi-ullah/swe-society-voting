@@ -100,8 +100,7 @@ authRouter.post("/api/signin", async (req, res) => {
     }
 
     const isPassMatch = password === memberCredential.password
-     console.log(password);
-     console.log(memberCredential.password);
+     
 
     if (!isPassMatch) {
       return res.status(400).json({ msg: "password invalid" });

@@ -11,6 +11,11 @@ candidateRouter.post("/api/candidates", async (req, res) => {
 
 
     try {
+
+      const candidates = await CandidateInfo.findOne({ year });
+      if (candidates) {
+        return res.status(400).json({ error: "Candidates already listed" });
+    }
      
       let pushCandidate = new CandidateInfo({
         votestatus,
@@ -29,7 +34,7 @@ candidateRouter.post("/api/candidates", async (req, res) => {
     }
   });
   //http://localhost:3000/api/get-candidates?post=assistant_general_secretary&year=2024
-  
+
 
   candidateRouter.get("/api/get-candidates", async (req, res) => {
     try {
@@ -63,24 +68,32 @@ module.exports = candidateRouter;
 
 
 // {
-//     "votestatus" : true,
-//     "year" : "2024",
-//     "candidateList": [
-//         {
-//          "candidateReg" : "2020831020",
-//     "candidatePost" : "Assistant General Secretary",
-//      "candidateName" : "Nixon",
-//     "candidateImage" : "http://imageurl.com",
-//      "candidateMarka" : "bamboo",
-//     "candidateMarkaImage" : "http://imageurl.com"
-//         },
-//         {
-//          "candidateReg" : "2020831020",
-//     "candidatePost" : "Assistant General Secretary",
-//      "candidateName" : "Arnob",
-//     "candidateImage" : "http://imageurl.com",
-//      "candidateMarka" : "bamboo",
-//     "candidateMarkaImage" : "http://imageurl.com"
-//         }
-//     ]
+//   "votestatus" : true,
+//   "year" : "2024",
+//   "candidateList": [
+//       {
+//        "candidateReg" : "2020831020",
+//   "candidatePost" : "assistant_general_secretary",
+//    "candidateName" : "Nixon",
+//   "candidateImage" : "http://imageurl.com",
+//    "candidateMarka" : "bamboo",
+//   "candidateMarkaImage" : "http://imageurl.com"
+//       },
+//       {
+//        "candidateReg" : "2020831022",
+//   "candidatePost" : "assistant_general_secretary",
+//    "candidateName" : "Arnob",
+//   "candidateImage" : "http://imageurl.com",
+//    "candidateMarka" : "bamboo",
+//   "candidateMarkaImage" : "http://imageurl.com"
+//       },
+//       {
+//        "candidateReg" : "2020831022",
+//   "candidatePost" : "general_secretary",
+//    "candidateName" : "Mehraj",
+//   "candidateImage" : "http://imageurl.com",
+//    "candidateMarka" : "bamboo",
+//   "candidateMarkaImage" : "http://imageurl.com"
+//       }
+//   ]
 // }
