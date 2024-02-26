@@ -15,8 +15,7 @@ const candidateSchema = new mongoose.Schema({
 
 candidateSchema.pre('save', function (next) {
     if (!this.candidateId) {
-        const abbreviatedName = abbreviatePostName(this.candidatePost);
-        this.candidateId = this.candidateReg + abbreviatedName;
+        this.candidateId = this.candidateReg + this.candidatePost;
     }
     next();
 });
@@ -28,7 +27,7 @@ const electionSchema = new mongoose.Schema({
     candidateList: [candidateSchema],
 });
 
-// Create a model based on the schema
+
 const Candidates = mongoose.model('Candidates', electionSchema);
 
 // Export the model

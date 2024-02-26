@@ -4,7 +4,7 @@ const bcryption = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const { generateString } = require("../generator");
 const auth = require("../middlewares/auth");
-const axios = require("axios");
+
 
 const authRouter = express.Router();
 
@@ -27,8 +27,6 @@ authRouter.post("/api/sign-reg", async (req, res) => {
     }
     
 
-  //  const hashPass = await bcryption.hash(pass, 8);
-
     let member = new Member({
 
       regno,
@@ -36,7 +34,6 @@ authRouter.post("/api/sign-reg", async (req, res) => {
 
     });
 
-    //variable er data gula ekhn database a save korar palla.
     member = await member.save();
 
    
