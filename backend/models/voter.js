@@ -7,43 +7,42 @@ const voterSchema = mymongo.Schema({
         trim: true,
        
     },
-   
-    vp: {
+    year: {
         required: true,
         type: String,
-        trim: true,
+    },
+   
+    vice_president : {
+        required: true,
+        type: String,
        
     },
-    gs: {
+    general_secretary: {
         required: true,
         type: String,
     },
-    ags: {
+    assistant_general_secretary: {
         required: true,
         type: String,
     },
-    gs: {
+    organizing_secretary : {
         required: true,
         type: String,
     },
-    os: {
+    sports_secretary : {
         required: true,
         type: String,
     },
-    ss: {
+    publication_secretary : {
         required: true,
         type: String,
     },
-    ps: {
-        required: true,
-        type: String,
-    },
-    aps: {
+    assistant_publication_secretary : {
         required: true,
         type: String,
     }
 });
 
-const member = mymongo.model("Voter", voterSchema);
+const voter = mymongo.model("Voter", voterSchema);
 
-module.exports = member;
+module.exports = voter;

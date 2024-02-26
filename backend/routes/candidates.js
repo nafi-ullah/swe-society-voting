@@ -6,10 +6,12 @@ const candidateRouter = express.Router();
 
 
 candidateRouter.post("/api/candidates", async (req, res) => {
+
+  const {  votestatus, year, candidateList } = req.body;
+
+
     try {
      
-      const {  votestatus, year, candidateList } = req.body;
-
       let pushCandidate = new CandidateInfo({
         votestatus,
         year,
@@ -26,18 +28,34 @@ candidateRouter.post("/api/candidates", async (req, res) => {
       return res.status(500).json({ error: e.message });
     }
   });
+  //http://localhost:3000/api/get-candidates?post=assistant_general_secretary&year=2024
+  
 
   candidateRouter.get("/api/get-candidates", async (req, res) => {
     try {
-      const votestatus = req.query.votestatus;
-      //  console.log(messid);
-      const candidates = await CandidateInfo.find({ votestatus  }); // jodi search functionality add korte hoy tobe ei find er moddhe search er character recieve korbe
+     
+      const post = req.query.post;
+      const year =  req.query.year;
+
+      if (!year || !post) {
+        return res.status(400).json({ error: 'Both year and post parameters are required' });
+      }
+
+      const candidates = await CandidateInfo.find({
+        year
+      });
+      const allCandidates = candidates.map(candidate => candidate.candidateList);
+      const flattenedCandidates = allCandidates.flat();
+
+      const filteredData = flattenedCandidates.filter(element => element.candidatePost === post);
+
   
-      res.json(candidates);
+      res.json({ candidateList: filteredData || [] });
     } catch (e) {
       res.status(500).json({ error: e.message });
     }
   });
+
   
 
 

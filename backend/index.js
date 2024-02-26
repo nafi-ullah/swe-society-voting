@@ -3,6 +3,7 @@ const express = require("express");
 const mydatabase = require("mongoose");
 const authRouter = require("./routes/auth");
 const candidateRouter = require("./routes/candidates");
+const voterRouter = require("./routes/voter");
 
 const app = express();
 
@@ -14,6 +15,7 @@ const DB =
 app.use(express.json());
 app.use(authRouter);
 app.use(candidateRouter);
+app.use(voterRouter);
 
 
 mydatabase
