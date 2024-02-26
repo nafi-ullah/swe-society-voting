@@ -1,10 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Bounce, ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 function CandidatePage() {
   const userData = useLocation().state;
+  const navigate = useNavigate();
+  const badClick = () => {
+    navigate("/vote-complete");
+  };
+  const goodClick = () => {
+    navigate("/vote-success");
+  };
 
   function formatPostName(postName) {
     // Split the post name by underscores
@@ -68,6 +75,9 @@ function CandidatePage() {
             theme: "light",
             transition: Bounce,
             });
+          setTimeout(() => {
+            badClick();
+          }, 5000);
         }
         else{
           toast('😊 Thank you for your valuable vote!', {
@@ -81,6 +91,9 @@ function CandidatePage() {
             theme: "light",
             transition: Bounce,
             });
+          setTimeout(() => {
+            goodClick();
+          }, 5000);
         }
         
         console.log("Success:", data);
