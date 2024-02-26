@@ -100,8 +100,7 @@ authRouter.post("/api/signin", async (req, res) => {
     }
 
     const isPassMatch = password === memberCredential.password
-     console.log(password);
-     console.log(memberCredential.password);
+     
 
     if (!isPassMatch) {
       return res.status(400).json({ msg: "password invalid" });
@@ -113,7 +112,7 @@ authRouter.post("/api/signin", async (req, res) => {
     // during signin now i want to check if any data exist today, if not, then post
  
 
-    return res.json({ token, ...memberCredential._doc });
+    return res.json({ token, regno });
   } catch (e) {
     return res.status(500).json({ error: e.message });
   }
