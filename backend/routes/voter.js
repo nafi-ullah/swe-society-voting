@@ -73,7 +73,13 @@ voterRouter.post("/api/votecast", async (req, res) => {
 
         const candIds = flattenedCandidates.map(individual => individual.candidateId);
 
-        
+        for (let idno = 0; idno < candIds.length; idno++) {
+            let post = candIds[idno].slice(10);
+
+            const votes = await VoterInfo.find({ candidatePost: post, candidateId: candIds[idno] } );
+            console.log(votes);
+
+        }
         
 
      
