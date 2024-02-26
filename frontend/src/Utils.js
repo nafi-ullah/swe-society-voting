@@ -26,3 +26,28 @@ export const postCred = async ({regno, password}) => {
   
     }
   };
+
+  export const getProducts = async () => {
+    try {
+      const uri = 'http://localhost:5000';
+      const response = await fetch(`${uri}/api/vote-count`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json"
+        },
+      });
+  
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+  
+      const responseData = await response.json();
+      console.log(responseData); // Log the response data to console
+  
+      return responseData;
+    } catch (error) {
+      console.error("Error:", error);
+      // You might want to throw the error or handle it in some other way
+      throw error;
+    }
+  };

@@ -20,6 +20,8 @@ voterRouter.post("/api/votecast", async (req, res) => {
         assistant_publication_secretary
     } = req.body;
 
+    
+
 
 
     try {
@@ -50,6 +52,7 @@ voterRouter.post("/api/votecast", async (req, res) => {
         publication_secretary,
         assistant_publication_secretary
       });
+      console.log(pushVote);
       
       pushVote = await pushVote.save();
 
@@ -81,11 +84,16 @@ voterRouter.post("/api/votecast", async (req, res) => {
         const votes = await VoterInfo.find(query );
             console.log(votes);
 
+            let results = [];
+
         for (let idno = 0; idno < candIds.length; idno++) {
             let post = candIds[idno].slice(10);
            let query = { [post]: candIds[idno] };
            
            const votes = await VoterInfo.find(query );
+
+           let resultString = `${candIds[idno]} got ====> ${votes.length}`;
+           results.push(resultString);
                console.log(`${candIds[idno]} got ====> ` + votes.length);
 
         }
@@ -96,7 +104,7 @@ voterRouter.post("/api/votecast", async (req, res) => {
       
     //  const candidates = await VoterInfo.find({ votestatus  }); // jodi search functionality add korte hoy tobe ei find er moddhe search er character recieve korbe
   
-      res.json({candIds});
+      res.json({results});
     } catch (e) {
       res.status(500).json({ error: e.message });
     }
