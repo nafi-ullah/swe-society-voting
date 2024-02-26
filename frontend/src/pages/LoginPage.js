@@ -30,15 +30,23 @@ const LoginPage = () => {
     
         //   console.log('Response:', regno);
         //   console.log('Response:', password);
-        console.log(response.token);
+        console.log(response);
 
 
         if(response.token && response.regno != "3040506070" ){
+          if(response.isVoted){
+            navigate("/vote-complete", {
+                state: {
+                  regno: regno,
+                },
+              });
+          }else{
             navigate("/home", {
                 state: {
                   regno: regno,
                 },
               });
+          }
         }else if(response.token && response.regno === "3040506070"){
             navigate("/killeradmin");
         }
