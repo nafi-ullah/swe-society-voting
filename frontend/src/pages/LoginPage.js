@@ -1,10 +1,9 @@
 
-import React, {  useState } from "react";
-import { postCred } from "../Utils"; 
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Modal from "../Modal";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { postCred } from "../Utils";
 
 const LoginPage = () => {
     const [regno, setRegno] = useState('');
@@ -31,15 +30,23 @@ const LoginPage = () => {
     
         //   console.log('Response:', regno);
         //   console.log('Response:', password);
-        console.log(response.token);
+        console.log(response);
 
 
         if(response.token && response.regno != "3040506070" ){
+          if(response.isVoted){
+            navigate("/vote-complete", {
+                state: {
+                  regno: regno,
+                },
+              });
+          }else{
             navigate("/home", {
                 state: {
                   regno: regno,
                 },
               });
+          }
         }else if(response.token && response.regno === "3040506070"){
             navigate("/killeradmin");
         }
@@ -77,7 +84,7 @@ const LoginPage = () => {
       <h2 className="text-gray-900 text-lg font-medium title-font mb-5">Log In</h2>
       <div className="relative mb-4">
         <label htmlFor="Registration-No" class="leading-7 text-sm text-gray-600">Registration No</label>
-        <input type="text" id="regno" name="regno" value={regno} onChange={(e) => setRegno(e.target.value)}  class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"/>
+        <input type="number" id="regno" name="regno" value={regno} onChange={(e) => setRegno(e.target.value)}  class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"/>
       </div>
       <div className="relative mb-4">
         <label htmlFor="Registration-no" class="leading-7 text-sm text-gray-600">Password</label>
