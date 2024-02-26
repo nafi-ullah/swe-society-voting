@@ -12,6 +12,7 @@ function CandidatePage() {
 
     return formattedName;
   }
+  const reg = 2020821011;
   const year = new Date().getFullYear();
   const [selectedVP, setSelectedVP] = useState(null);
   const [selectedGS, setSelectedGS] = useState(null);
@@ -28,60 +29,81 @@ function CandidatePage() {
   const [psCandidates, setPSCandidates] = useState([]);
   const [apsCandidates, setAPSCandidates] = useState([]);
 
+  function castVote() {
+    fetch("http://localhost:5000/api/votecast", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        regno: reg,
+        year: year,
+        vice_president: selectedVP,
+        general_secretary: selectedGS,
+        assistant_general_secretary: selectedAGS,
+        organizing_secretary: selectedOS,
+        sports_secretary: selectedSS,
+        publication_secretary: selectedPS,
+        assistant_publication_secretary: selectedAPS,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Success:", data);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  }
+
   const fetchCandidates = (post) => {
     fetch(`http://localhost:5000/api/get-candidates?post=${post}&year=${year}`)
       .then((res) => res.json())
       .then((data) => {
-        if (post === 'vice_president') {
-            setVPCandidates(data.candidateList);
-        } 
-        else if (post === 'general_secretary') {
-            setGSCandidates(data.candidateList);
-        } 
-        else if (post === 'organizing_secretary') {
-            setOSCandidates(data.candidateList);
-        }
-        else if (post === 'assistant_general_secretary') {
-            setAGSCandidates(data.candidateList);
-        }
-        else if (post === 'sports_secretary') {
-            setSSCandidates(data.candidateList);
-        }
-        else if (post === 'publication_secretary') {
-            setPSCandidates(data.candidateList);
-        }
-        else if (post === 'assistant_publication_secretary') {
-            setAPSCandidates(data.candidateList);
+        if (post === "vice_president") {
+          setVPCandidates(data.candidateList);
+        } else if (post === "general_secretary") {
+          setGSCandidates(data.candidateList);
+        } else if (post === "organizing_secretary") {
+          setOSCandidates(data.candidateList);
+        } else if (post === "assistant_general_secretary") {
+          setAGSCandidates(data.candidateList);
+        } else if (post === "sports_secretary") {
+          setSSCandidates(data.candidateList);
+        } else if (post === "publication_secretary") {
+          setPSCandidates(data.candidateList);
+        } else if (post === "assistant_publication_secretary") {
+          setAPSCandidates(data.candidateList);
         }
       });
   };
 
   useEffect(() => {
-      fetchCandidates('vice_president');
-      fetchCandidates('general_secretary');
-      fetchCandidates('organizing_secretary');
-      fetchCandidates('assistant_general_secretary');
-      fetchCandidates('sports_secretary');
-      fetchCandidates('publication_secretary');
-      fetchCandidates('assistant_publication_secretary');
+    fetchCandidates("vice_president");
+    fetchCandidates("general_secretary");
+    fetchCandidates("organizing_secretary");
+    fetchCandidates("assistant_general_secretary");
+    fetchCandidates("sports_secretary");
+    fetchCandidates("publication_secretary");
+    fetchCandidates("assistant_publication_secretary");
   }, []);
 
-const handleVPCandidateClick = (candidateID) => {
+  const handleVPCandidateClick = (candidateID) => {
     setSelectedVP(candidateID);
     console.log(selectedVP);
-};
-const handleGSCandidateClick = (candidateID) => {
+  };
+  const handleGSCandidateClick = (candidateID) => {
     setSelectedGS(candidateID);
     console.log(selectedGS);
-};
-const handleAGSCandidateClick = (candidateID) => {
+  };
+  const handleAGSCandidateClick = (candidateID) => {
     setSelectedAGS(candidateID);
     console.log(selectedGS);
-};
-const handleOSCandidateClick = (candidateID) => {
+  };
+  const handleOSCandidateClick = (candidateID) => {
     setSelectedOS(candidateID);
     console.log(selectedPS);
-};
+  };
   const handleSSCandidateClick = (candidateID) => {
     setSelectedSS(candidateID);
     console.log(selectedPS);
@@ -99,7 +121,7 @@ const handleOSCandidateClick = (candidateID) => {
     <div>
       <section className="text-gray-600 body-font">
         <div className="container px-5 py-24 mx-auto">
-            {/* VP */}
+          {/* VP */}
           <div className="flex flex-wrap w-full my-9">
             <div className="lg:w-1/2 w-full mb-6 lg:mb-0">
               <h1 className="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900">
@@ -115,7 +137,7 @@ const handleOSCandidateClick = (candidateID) => {
             {vpCandidates.map((candidate) => (
               <div
                 className={`xl:w-1/4 md:w-1/2 p-4 ${
-                    selectedVP !== null && selectedVP === candidate.candidateId
+                  selectedVP !== null && selectedVP === candidate.candidateId
                     ? "border-4 border-green-600"
                     : ""
                 }`}
@@ -164,7 +186,7 @@ const handleOSCandidateClick = (candidateID) => {
             {gsCandidates.map((candidate) => (
               <div
                 className={`xl:w-1/4 md:w-1/2 p-4 ${
-                    selectedGS !== null && selectedGS === candidate.candidateId
+                  selectedGS !== null && selectedGS === candidate.candidateId
                     ? "border-4 border-green-600"
                     : ""
                 }`}
@@ -197,8 +219,8 @@ const handleOSCandidateClick = (candidateID) => {
               </div>
             ))}
           </div>
-            {/* OS */}
-            <div className="flex flex-wrap w-full my-9">
+          {/* OS */}
+          <div className="flex flex-wrap w-full my-9">
             <div className="lg:w-1/2 w-full mb-6 lg:mb-0">
               <h1 className="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900">
                 Organizing Secretary
@@ -206,14 +228,15 @@ const handleOSCandidateClick = (candidateID) => {
               <div className="h-1 w-20 bg-blue-500 rounded"></div>
             </div>
             <p className="lg:w-1/2 w-full leading-relaxed text-gray-500">
-                Vote for your desired candidate for the post of Organizing Secretary
+              Vote for your desired candidate for the post of Organizing
+              Secretary
             </p>
           </div>
           <div className="flex justify-center flex-wrap -m-4">
             {osCandidates.map((candidate) => (
               <div
                 className={`xl:w-1/4 md:w-1/2 p-4 ${
-                    selectedOS !== null && selectedOS === candidate.candidateId
+                  selectedOS !== null && selectedOS === candidate.candidateId
                     ? "border-4 border-green-600"
                     : ""
                 }`}
@@ -246,8 +269,8 @@ const handleOSCandidateClick = (candidateID) => {
               </div>
             ))}
           </div>
-            {/* AGS */}
-            <div className="flex flex-wrap w-full my-9">
+          {/* AGS */}
+          <div className="flex flex-wrap w-full my-9">
             <div className="lg:w-1/2 w-full mb-6 lg:mb-0">
               <h1 className="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900">
                 Assistant General Secretary
@@ -255,14 +278,15 @@ const handleOSCandidateClick = (candidateID) => {
               <div className="h-1 w-20 bg-blue-500 rounded"></div>
             </div>
             <p className="lg:w-1/2 w-full leading-relaxed text-gray-500">
-                Vote for your desired candidate for the post of Assistant General Secretary
+              Vote for your desired candidate for the post of Assistant General
+              Secretary
             </p>
           </div>
           <div className="flex justify-center flex-wrap -m-4">
             {agsCandidates.map((candidate) => (
               <div
                 className={`xl:w-1/4 md:w-1/2 p-4 ${
-                    selectedAGS !== null && selectedAGS === candidate.candidateId
+                  selectedAGS !== null && selectedAGS === candidate.candidateId
                     ? "border-4 border-green-600"
                     : ""
                 }`}
@@ -295,8 +319,8 @@ const handleOSCandidateClick = (candidateID) => {
               </div>
             ))}
           </div>
-            {/* SS */}
-            <div className="flex flex-wrap w-full my-9">
+          {/* SS */}
+          <div className="flex flex-wrap w-full my-9">
             <div className="lg:w-1/2 w-full mb-6 lg:mb-0">
               <h1 className="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900">
                 Sports Secretary
@@ -304,14 +328,14 @@ const handleOSCandidateClick = (candidateID) => {
               <div className="h-1 w-20 bg-blue-500 rounded"></div>
             </div>
             <p className="lg:w-1/2 w-full leading-relaxed text-gray-500">
-                Vote for your desired candidate for the post of Sports Secretary
+              Vote for your desired candidate for the post of Sports Secretary
             </p>
           </div>
           <div className="flex justify-center flex-wrap -m-4">
             {ssCandidates.map((candidate) => (
               <div
                 className={`xl:w-1/4 md:w-1/2 p-4 ${
-                    selectedSS !== null && selectedSS === candidate.candidateId
+                  selectedSS !== null && selectedSS === candidate.candidateId
                     ? "border-4 border-green-600"
                     : ""
                 }`}
@@ -344,8 +368,8 @@ const handleOSCandidateClick = (candidateID) => {
               </div>
             ))}
           </div>
-            {/* PS */}
-            <div className="flex flex-wrap w-full my-9">
+          {/* PS */}
+          <div className="flex flex-wrap w-full my-9">
             <div className="lg:w-1/2 w-full mb-6 lg:mb-0">
               <h1 className="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900">
                 Publication Secretary
@@ -353,14 +377,15 @@ const handleOSCandidateClick = (candidateID) => {
               <div className="h-1 w-20 bg-blue-500 rounded"></div>
             </div>
             <p className="lg:w-1/2 w-full leading-relaxed text-gray-500">
-                Vote for your desired candidate for the post of Publication Secretary
+              Vote for your desired candidate for the post of Publication
+              Secretary
             </p>
           </div>
           <div className="flex justify-center flex-wrap -m-4">
             {psCandidates.map((candidate) => (
               <div
                 className={`xl:w-1/4 md:w-1/2 p-4 ${
-                    selectedPS !== null && selectedPS === candidate.candidateId
+                  selectedPS !== null && selectedPS === candidate.candidateId
                     ? "border-4 border-green-600"
                     : ""
                 }`}
@@ -393,8 +418,8 @@ const handleOSCandidateClick = (candidateID) => {
               </div>
             ))}
           </div>
-            {/* APS */}
-            <div className="flex flex-wrap w-full my-9">
+          {/* APS */}
+          <div className="flex flex-wrap w-full my-9">
             <div className="lg:w-1/2 w-full mb-6 lg:mb-0">
               <h1 className="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900">
                 Assistant Publication Secretary
@@ -402,14 +427,15 @@ const handleOSCandidateClick = (candidateID) => {
               <div className="h-1 w-20 bg-blue-500 rounded"></div>
             </div>
             <p className="lg:w-1/2 w-full leading-relaxed text-gray-500">
-                Vote for your desired candidate for the post of Assistant Publication Secretary
+              Vote for your desired candidate for the post of Assistant
+              Publication Secretary
             </p>
           </div>
           <div className="flex justify-center flex-wrap -m-4">
             {apsCandidates.map((candidate) => (
               <div
                 className={`xl:w-1/4 md:w-1/2 p-4 ${
-                    selectedAPS !== null && selectedAPS === candidate.candidateId
+                  selectedAPS !== null && selectedAPS === candidate.candidateId
                     ? "border-4 border-green-600"
                     : ""
                 }`}
@@ -442,6 +468,24 @@ const handleOSCandidateClick = (candidateID) => {
               </div>
             ))}
           </div>
+          {selectedVP === null ||
+          selectedGS === null ||
+          selectedOS === null ||
+          selectedAGS === null ||
+          selectedSS === null ||
+          selectedPS === null ||
+          selectedAPS === null ? (
+            <p className="lg:w-2/3 mx-auto leading-relaxed text-base flex justify-center mt-16">
+              Please select a candidate for each post to submit your vote
+            </p>
+          ) : (
+            <button
+                onClick={castVote}
+              className="flex mx-auto mt-16 text-white bg-green-500 border-0 py-2 px-8 focus:outline-none hover:bg-green-600 rounded text-lg"
+            >
+              SUBMIT VOTE
+            </button>
+          )}
         </div>
       </section>
     </div>
