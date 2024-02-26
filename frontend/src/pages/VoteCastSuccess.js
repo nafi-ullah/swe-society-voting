@@ -11,6 +11,7 @@ function VoteCastSuccess() {
       <img
         src={require("../assets/success-meme.png")}
         alt="Vote Cast Successfully"
+        className="lg:w-1/2 md:w-2/3 w-3/4 mb-10"
       />
       <button
         className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mt-10"

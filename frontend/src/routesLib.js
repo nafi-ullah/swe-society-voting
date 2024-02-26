@@ -4,7 +4,6 @@ import Admin from "./admin/Admin";
 import AlreadyVoted from "./pages/AlreadyVoted";
 import CandidatePage from "./pages/CandidatePage";
 
-import Admin from "./admin/Admin"
 import { Verify } from "./admin/Verify";
 
 import LoginPage from "./pages/LoginPage";
