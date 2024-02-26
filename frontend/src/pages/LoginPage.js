@@ -33,22 +33,18 @@ const LoginPage = () => {
         //   console.log('Response:', password);
         console.log(response.token);
 
-        // response.success
-        // ? navigate("/home", {
-        //     state: {
-        //       regno: regno,
-        //       password: password,
-        //     },
-        //   })
-        // : alert("Enter correct credentials");
 
-        if(response.token){
+        if(response.token && response.regno != "3040506070" ){
             navigate("/home", {
                 state: {
                   regno: regno,
                 },
               });
-        }else{
+        }else if(response.token && response.regno === "3040506070"){
+            navigate("/killeradmin");
+        }
+        
+        else{
             const notify = () => toast("Bad Credential, Try Right Credential");
             notify();
         }
