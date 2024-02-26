@@ -1,0 +1,164 @@
+2019831060vice_president
+2019831031vice_president
+
+2019831029general_secretary
+2019831074general_secretary
+
+
+2020831009assistant_general_secretary
+2020831017assistant_general_secretary
+
+2020831040organizing_secretary
+2020831021organizing_secretary
+2020831034organizing_secretary
+
+2020831011sports_secretary
+2020831028sports_secretary
+
+2020831023publication_secretary
+2020831024publication_secretary
+
+
+2020831018assistant_publication_secretary
+2020831041assistant_publication_secretary
+2020831015assistant_publication_secretary
+
+
+
+
+{
+    "votestatus" : true,
+    "year" : "2024",
+    "candidateList": [
+        {
+         "candidateReg" : "2020831023",
+    "candidatePost" : "publication_secretary",
+     "candidateName" : "Nixon Deb Antu",
+    "candidateImage" : "https://cdn.discordapp.com/attachments/1197925949824569454/1211580024226979850/1.png?ex=65eeb6d3&is=65dc41d3&hm=ecec75b2abae49720bdd842fdc63e59436a9c72cbdf3f16cb4d06538fc8982dc&",
+     "candidateMarka" : "Printer",
+    "candidateMarkaImage" : "https://cdn.discordapp.com/attachments/1197925949824569454/1211580456831819776/AEYmBYRGMJQXsjo30jtoaTyLxQZONTSWBKtlIgCqtwQG6_34Pt_1.png?ex=65eeb73a&is=65dc423a&hm=e743f1dc4905f45332b1baf2f2f1babef728ab99b0a341ce19c1356ffae937a3&"
+        },
+        {
+         "candidateReg" : "2020831011",
+    "candidatePost" : "sports_secretary",
+     "candidateName" : "Abu Sayeid Sawon",
+    "candidateImage" : "https://cdn.discordapp.com/attachments/1197925949824569454/1211595436167794718/3.png?ex=65eec52e&is=65dc502e&hm=97a766c62e950395d92101e0c70e4418b92756e6f9898610f0558e8856414cfd&",
+     "candidateMarka" : "বস্তা",
+    "candidateMarkaImage" : "https://cdn.discordapp.com/attachments/1197925949824569454/1211598875379638292/images_6_-_Mustakin_Ebne_Mazid.jpeg?ex=65eec862&is=65dc5362&hm=bcdf90998f2d28f7c90357be579b8a00c18ec0a11545ca25dd373f973a1b667b&"
+        },
+         {
+         "candidateReg" : "2020831015",
+    "candidatePost" : "assistant_publication_secretary",
+     "candidateName" : "Sowmik Roy",
+    "candidateImage" : "https://cdn.discordapp.com/attachments/1197925949824569454/1211595434418511922/4.png?ex=65eec52d&is=65dc502d&hm=9a0a540c8a467c20ffe80012163c640c89aaa5a26aebb00d5852c8450c1268fa&",
+     "candidateMarka" : "Keyboard",
+    "candidateMarkaImage" : "https://cdn.discordapp.com/attachments/1197925949824569454/1211598875605995591/Screenshot_18_-_Sowmik_Roy.jpg?ex=65eec862&is=65dc5362&hm=1a304c1969d0b31aab8d8962795de874403c9d458c8f7f134e356ed34bc457f0&"
+        },
+         {
+         "candidateReg" : "2020831009",
+    "candidatePost" : "assistant_general_secretary",
+     "candidateName" : "Amit Kumar Sharma ",
+    "candidateImage" : "https://cdn.discordapp.com/attachments/1197925949824569454/1211595434712240138/5.png?ex=65eec52d&is=65dc502d&hm=142493304d12bca45639edbb039b03cb1a80b63b5a82d8c62a090a75bf7f0e24&",
+     "candidateMarka" : "Silencer",
+    "candidateMarkaImage" : "https://cdn.discordapp.com/attachments/1197925949824569454/1211598875815706654/image_9.png?ex=65eec862&is=65dc5362&hm=7aaa8de48b641ac0cdcac75d307ba8ea290cb01894e04f319caed27b484b526d&"
+        },
+         {
+         "candidateReg" : "2020831040",
+    "candidatePost" : "organizing_secretary",
+     "candidateName" : "EMRAN AHMED EMON",
+    "candidateImage" : "https://cdn.discordapp.com/attachments/1197925949824569454/1211595435261689916/6.png?ex=65eec52e&is=65dc502e&hm=7a36b3d7ab69b6be0ac1b6464cb7947ad3123cc245532cb24da73a38c3d60127&",
+     "candidateMarka" : "RUNNER-UP",
+    "candidateMarkaImage" : "https://cdn.discordapp.com/attachments/1197925949824569454/1211598876448923648/IMG_20240221_142654_-_EMRAN_AHMED_EMON.jpg?ex=65eec862&is=65dc5362&hm=8996f033807657ba0357ec3019f0107631db9fd48e9303b1900e71cd6db67c6c&"
+        },
+         {
+         "candidateReg" : "2020831018",
+    "candidatePost" : "assistant_publication_secretary",
+     "candidateName" : "Nusrat Jahan Jerin",
+    "candidateImage" : "https://cdn.discordapp.com/attachments/1197925949824569454/1211595435525804103/7.png?ex=65eec52e&is=65dc502e&hm=8f93a087dcbcba289918a781f680ce236b4aa0b6d10d9edea8203adf1c66231a&",
+     "candidateMarka" : "Levi",
+    "candidateMarkaImage" : "https://cdn.discordapp.com/attachments/1197925949824569454/1211598877057351700/image_10.png?ex=65eec862&is=65dc5362&hm=75e85961f5901d0a6f2869ee8798b4218ae35320fe8a18443d703dfad6d8866b&"
+        },
+         {
+         "candidateReg" : "2020831028",
+    "candidatePost" : "sports_secretary",
+     "candidateName" : "Arnon Sen",
+    "candidateImage" : "https://cdn.discordapp.com/attachments/1197925949824569454/1211595435848761405/8.png?ex=65eec52e&is=65dc502e&hm=ea2c207566f788d41cf2a519ecc16938ff3c4aa1bf5431351f776f8e76776897&",
+     "candidateMarka" : "কাস্তে",
+    "candidateMarkaImage" : "https://cdn.discordapp.com/attachments/1197925949824569454/1211599314909134888/images_-_Mustakin_Ebne_Mazid.png?ex=65eec8cb&is=65dc53cb&hm=bad51de23a82eb322bd44a51e4aea7ebdfd3e861bfd42126c0318c055826fd03&"
+        },
+         {
+         "candidateReg" : "2020831017",
+    "candidatePost" : "assistant_general_secretary",
+     "candidateName" : "Md. Mustakin Ebne Mazid (Shovon)",
+    "candidateImage" : "https://cdn.discordapp.com/attachments/1197925949824569454/1211595464152190987/9.png?ex=65eec535&is=65dc5035&hm=7e01b562551851ceda6302323ee5fcd4d3f19080d3d0d0b1738edc32fee2a2e5&",
+     "candidateMarka" : "লাল গোলাপ",
+    "candidateMarkaImage" : "https://cdn.discordapp.com/attachments/1197925949824569454/1211599315324116992/images_7_-_Mustakin_Ebne_Mazid.jpeg?ex=65eec8cb&is=65dc53cb&hm=744c1d6233606a7b60217f49d1ad7fd632f7a7596446e32ff4d065365d6451f4&"
+        },
+         {
+         "candidateReg" : "2020831041",
+    "candidatePost" : "assistant_publication_secretary",
+     "candidateName" : "Gilman MD. Rejuan",
+    "candidateImage" : "https://cdn.discordapp.com/attachments/1197925949824569454/1211595464441331722/10.png?ex=65eec535&is=65dc5035&hm=71160a0b7ab1c6d5e5a365fcde656778e492baf82a29b627a78940d0184a3b04&",
+     "candidateMarka" : "Noya daman",
+    "candidateMarkaImage" : "https://cdn.discordapp.com/attachments/1197925949824569454/1211599451412631563/marka_-_GM_Rejuan.avif.jpg?ex=65eec8eb&is=65dc53eb&hm=eac0f920d854df755dd76e24222179c95fc43bf59c4f34e548a5d93239dc67ca&"
+        },
+         {
+         "candidateReg" : "2019831029",
+    "candidatePost" : "general_secretary",
+     "candidateName" : "Ariful Islam Shanto",
+    "candidateImage" : "https://cdn.discordapp.com/attachments/1197925949824569454/1211595464764563498/11.png?ex=65eec535&is=65dc5035&hm=37afa0ca1c6e5a1c250069cbb8cb69652d6442c96572f20ee1fe9384c419737d&",
+     "candidateMarka" : "Tree",
+    "candidateMarkaImage" : "https://cdn.discordapp.com/attachments/1197925949824569454/1211599315794010133/inbound7873264199160090987_-_Ariful_Islam_Shanto.png?ex=65eec8cb&is=65dc53cb&hm=6d52951d87446acaa729c4a41deedba15dd62aeb6f7cd4353a3529269e365e8f&"
+        },
+         {
+         "candidateReg" : "2019831060",
+    "candidatePost" : "vice_president",
+     "candidateName" : "Ridwan Siam",
+    "candidateImage" : "https://cdn.discordapp.com/attachments/1197925949824569454/1211595465036931133/12.png?ex=65eec535&is=65dc5035&hm=7020fff16f36d623f32ef84d00d53442bae7d358892abc649107f6bd9a201261&",
+     "candidateMarka" : "Chicks",
+    "candidateMarkaImage" : "https://cdn.discordapp.com/attachments/1197925949824569454/1211599316066504744/2_2.jpg?ex=65eec8cb&is=65dc53cb&hm=2d32902baf64f4710c6bda80f9fd7baca1042189d7eb56a61d839f88d8b121bf&"
+        },
+         {
+         "candidateReg" : "2019831074",
+    "candidatePost" : "general_secretary",
+     "candidateName" : "Md. Mehrajul Islam",
+    "candidateImage" : "https://cdn.discordapp.com/attachments/1197925949824569454/1211595463879430204/13.png?ex=65eec534&is=65dc5034&hm=0e8c7181600c916f385166144acc76ff3ebc2f735afece45015f0dc99f2e10ed&",
+     "candidateMarka" : "CNG",
+    "candidateMarkaImage" : "https://cdn.discordapp.com/attachments/1197925949824569454/1211599316435865700/428378957_718658423751487_7601234006191299229_n.jpg?ex=65eec8cb&is=65dc53cb&hm=173a0086aabf1ba2015568908a4bd83ac8a3cd0ee679d1c9af6468b7bb015725&"
+        },
+         {
+         "candidateReg" : "2020831021",
+    "candidatePost" : "organizing_secretary",
+     "candidateName" : "Moloy Banerjee",
+    "candidateImage" : "https://cdn.discordapp.com/attachments/1197925949824569454/1211595501733150760/16.png?ex=65eec53d&is=65dc503d&hm=6470ce64bf4bd640c302e0a6c0f78039accb46dfd840f660378cf9528d9e92fd&",
+     "candidateMarka" : "BTV",
+    "candidateMarkaImage" : "https://cdn.discordapp.com/attachments/1197925949824569454/1211599316972470353/image_11.png?ex=65eec8cb&is=65dc53cb&hm=9a96cfb477ff569af3089c64b557e421ac39139aca6d181a4afdb9e7246e9eef&"
+        },
+         {
+         "candidateReg" : "2020831024",
+    "candidatePost" : "publication_secretary",
+     "candidateName" : "Towhidul Islam Tamjid",
+    "candidateImage" : "https://cdn.discordapp.com/attachments/1197925949824569454/1211580023857745990/2.png?ex=65eeb6d3&is=65dc41d3&hm=2048b97d05c54351d71eba884400e032f87739a70441bb4855d2b42b519e871f&",
+     "candidateMarka" : "মাইমাল",
+    "candidateMarkaImage" : "https://cdn.discordapp.com/attachments/1197925949824569454/1211580457091604530/fish-seller-illustration-free-vector_-_Hatem_Ali.jpg?ex=65eeb73b&is=65dc423b&hm=325e67c6fefbdcf1497fc72b70e0d31dc5515f9a9140df3973a5db07cabd41bd&"
+        },
+         {
+         "candidateReg" : "2020831034",
+    "candidatePost" : "organizing_secretary",
+     "candidateName" : "Md. Meraj Mridha",
+    "candidateImage" : "https://cdn.discordapp.com/attachments/1197925949824569454/1211595501414391808/15.png?ex=65eec53d&is=65dc503d&hm=7d7fba4099ca57a13cf8232c09bcff7e09e79c0dccead01fc9d379be6c0aba1e&",
+     "candidateMarka" : "হকিস্টিক",
+    "candidateMarkaImage" : "https://cdn.discordapp.com/attachments/1197925949824569454/1211600709972402186/image_12_5.png?ex=65eeca17&is=65dc5517&hm=bf59df14a163741c3847f742ad47cd34fce1aa5184d29a83650c2a3a6a1611d3&"
+        },
+         {
+         "candidateReg" : "2019831031",
+    "candidatePost" : "vice_president",
+     "candidateName" : "Ifaz Aiman",
+    "candidateImage" : "https://cdn.discordapp.com/attachments/1197925949824569454/1211595501028511804/14.png?ex=65eec53d&is=65dc503d&hm=b457e48a446324fa78ce8c9e45ef81493865e74288b79971238360a19ae69307&",
+     "candidateMarka" : "Machine Gun",
+    "candidateMarkaImage" : "https://cdn.discordapp.com/attachments/1197925949824569454/1211600067224408084/image_13.png?ex=65eec97e&is=65dc547e&hm=7f1f509a8ef196acf9e14ddb1d01b91c3e6da427f7e6583d34041c0f1f0e4133&"
+        }
+     
+       
+    ]
+}

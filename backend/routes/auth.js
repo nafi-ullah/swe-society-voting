@@ -4,6 +4,7 @@ const bcryption = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const { generateString } = require("../generator");
 const auth = require("../middlewares/auth");
+const VoterInfo = require("../models/voter");
 
 
 const authRouter = express.Router();
@@ -90,8 +91,12 @@ authRouter.post("/api/signin", async (req, res) => {
   
   try {
    
-
+    let isVoted = false;
     const memberCredential = await Member.findOne({ regno }); 
+    const voted  = await VoterInfo.findOne({ regno  });
+    if(voted){
+      isVoted = true;
+    }
 
     if (!memberCredential) {
       return res
@@ -112,11 +117,28 @@ authRouter.post("/api/signin", async (req, res) => {
     // during signin now i want to check if any data exist today, if not, then post
  
 
-    return res.json({ token, regno });
+    return res.json({ token, regno, isVoted });
   } catch (e) {
     return res.status(500).json({ error: e.message });
   }
 });
+
+
+authRouter.get("/api/allcredential", async (req, res) => {
+  try {
+    
+    //  console.log(messid);
+    const ids = await Member.find({}); // jodi search functionality add korte hoy tobe ei find er moddhe search er character recieve korbe
+
+    res.json(ids);
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
+
+
+
 
 authRouter.post("/tokenIsValid", async (req, res) => {
   try {
