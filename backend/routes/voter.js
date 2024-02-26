@@ -22,8 +22,6 @@ voterRouter.post("/api/votecast", async (req, res) => {
 
     
 
-
-
     try {
      
         if (!regno || !year || !vice_president || !general_secretary || 
@@ -113,10 +111,7 @@ voterRouter.post("/api/votecast", async (req, res) => {
               // console.log(`${candIds[idno]} got ====> ` + votes.length);
 
         }
-        
-
-     
-     
+      
       
     //  const candidates = await VoterInfo.find({ votestatus  }); // jodi search functionality add korte hoy tobe ei find er moddhe search er character recieve korbe
   
@@ -125,6 +120,66 @@ voterRouter.post("/api/votecast", async (req, res) => {
       res.status(500).json({ error: e.message });
     }
   });
+
+  voterRouter.get("/api/vote-verify", async (req, res) => {
+    try {
+
+        const regno = req.query.regno;
+
+
+        const candidates = await VoterInfo.find({regno}); 
+        let voted = [];
+
+       const vp = candidates[0].vice_president;
+       voted.push(vp);
+       const gs = candidates[0].general_secretary;
+       voted.push(gs);
+       const ags= candidates[0].assistant_general_secretary;
+       voted.push(ags);
+       const os= candidates[0].organizing_secretary;
+       voted.push(os);
+       const ss = candidates[0].sports_secretary;
+       voted.push(ss);
+       const ps= candidates[0].publication_secretary;
+       voted.push(ps);
+       const aps=  candidates[0].assistant_publication_secretary;
+       voted.push(aps);
+          const votedName = [];
+       
+
+       const candidatesList = await CandidateInfo.find({}); 
+       const allCandidates = candidatesList.map(candidate => candidate.candidateList);
+        const flattenedCandidates = allCandidates.flat();
+
+
+        const candIds = flattenedCandidates.map(individual => individual.candidateId);
+        // console.log(candIds);
+        const candName = flattenedCandidates.map(individual => individual.candidateName);
+
+        for (let i = 0; i < voted.length; i++) {
+          for (let j = 0; j <candIds.length ; j++) {
+                  if(voted[i] === candIds[j]){
+                    votedName.push(candName[j]);
+                  }
+
+          }
+        }
+
+
+
+     
+      
+      
+    //  const candidates = await VoterInfo.find({ votestatus  }); // jodi search functionality add korte hoy tobe ei find er moddhe search er character recieve korbe
+  
+      res.json(votedName);
+    } catch (e) {
+      res.status(500).json({ error: e.message });
+    }
+  });
+
+
+
   
 
 

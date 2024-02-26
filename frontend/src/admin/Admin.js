@@ -1,9 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { getProducts } from "../Utils"; 
+import { useNavigate } from "react-router-dom";
 import Cart from "./Cart";
 
 const Admin = () => {
     const [data, setData] = useState([]);
+    const navigate = useNavigate();
+
+    const handleButtonClick = async () => {
+      navigate("/voteverify");
+
+    }
 
     useEffect(() => {
         const fetchData = async () => {
@@ -23,7 +30,9 @@ const Admin = () => {
 
   return (
     <div className='w-full '>
-<div className="w-full text-center text-5xl"><u>Vote Result</u></div>
+<div className="w-full text-center text-5xl"><u>Vote Result</u>
+<button onClick={handleButtonClick } className="text-white absolute top-2 right-4 bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">Verify</button>
+</div>
  <div className="flex flex-wrap m-16">
  {data && data.map((product, index) => (
     <div key={index}>

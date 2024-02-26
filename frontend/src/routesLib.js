@@ -3,9 +3,13 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LoginPage from "./pages/LoginPage";
 import CandidatePage from "./pages/CandidatePage";
 import Admin from "./admin/Admin"
+import { Verify } from "./admin/Verify";
 
 
 function RoutesLib() {
+ 
+
+
   return (
     <>
       <BrowserRouter>
@@ -13,6 +17,7 @@ function RoutesLib() {
           <Route path="/" element={<LoginPage />} />
           <Route path="/home" element={<CandidatePage />} />
           <Route path="/killeradmin" element={<Admin />} />
+          <Route path="/voteverify" element={<Verify />} />
           {/* <Route path="/ai" element={<AIPage />} />
           <Route path="/room" element={<FriendsPage />} />
           <Route path="/lobby" element={<Lobby />} />
