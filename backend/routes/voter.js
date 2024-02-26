@@ -20,6 +20,8 @@ voterRouter.post("/api/votecast", async (req, res) => {
         assistant_publication_secretary
     } = req.body;
 
+    
+
 
 
     try {
@@ -50,6 +52,7 @@ voterRouter.post("/api/votecast", async (req, res) => {
         publication_secretary,
         assistant_publication_secretary
       });
+      console.log(pushVote);
       
       pushVote = await pushVote.save();
 

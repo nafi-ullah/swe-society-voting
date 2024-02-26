@@ -1,10 +1,19 @@
 
 import React, {  useState } from "react";
 import { postCred } from "../Utils"; 
+import { useNavigate } from "react-router-dom";
+import Modal from "../Modal";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const LoginPage = () => {
     const [regno, setRegno] = useState('');
     const [password, setPassword] = useState('');
+    const [showModal, setShowModal] = useState(false);
+    const navigate = useNavigate();
+
+    
+   
 
 
     const handleButtonClick = async () => {
@@ -12,27 +21,56 @@ const LoginPage = () => {
     
     
         try{
-     console.log("button" + regno);
-     console.log("button" + password);
+            
+     
           const response = await postCred({
             regno,
-            password,
+            password
           }
          );
     
         //   console.log('Response:', regno);
         //   console.log('Response:', password);
-        console.log(response);
+        console.log(response.token);
+
+        // response.success
+        // ? navigate("/home", {
+        //     state: {
+        //       regno: regno,
+        //       password: password,
+        //     },
+        //   })
+        // : alert("Enter correct credentials");
+
+        if(response.token){
+            navigate("/home", {
+                state: {
+                  regno: regno,
+                },
+              });
+        }else{
+            const notify = () => toast("Bad Credential, Try Right Credential");
+            notify();
+        }
+      
+    
+
+     
     
         }catch(e){
+            const notify = () => toast("Bad Credential, Try Right Credential");
           console.error('Error:', e);
+          notify();
         }
     
       };
-
+      const closeModal = () => {
+        setShowModal(false);
+      };
 
 
   return (
+    <>
     <section className="text-gray-600 body-font">
   <div className="container px-5 py-24 mx-auto flex flex-wrap items-center">
     <div className="lg:w-3/5 md:w-1/2 md:pr-16 lg:pr-0 pr-0">
@@ -54,6 +92,9 @@ const LoginPage = () => {
     </div>
   </div>
 </section>
+<ToastContainer />
+
+</>
   )
 }
 

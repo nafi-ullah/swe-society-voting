@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 
 function CandidatePage() {
+  const userData = useLocation().state;
+
+
   function formatPostName(postName) {
     // Split the post name by underscores
     const words = postName.split("_");
@@ -12,7 +16,7 @@ function CandidatePage() {
 
     return formattedName;
   }
-  const reg = 2020821011;
+  const reg = userData.regno;
   const year = new Date().getFullYear();
   const [selectedVP, setSelectedVP] = useState(null);
   const [selectedGS, setSelectedGS] = useState(null);
