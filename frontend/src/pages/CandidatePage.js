@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
+import { Bounce, ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 function CandidatePage() {
   const userData = useLocation().state;
-
 
   function formatPostName(postName) {
     // Split the post name by underscores
@@ -56,6 +56,33 @@ function CandidatePage() {
     })
       .then((response) => response.json())
       .then((data) => {
+        if(data.error === "This voter already voted"){
+          toast('😠 You have already casted vote', {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            transition: Bounce,
+            });
+        }
+        else{
+          toast('😊 Thank you for your valuable vote!', {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            transition: Bounce,
+            });
+        }
+        
         console.log("Success:", data);
       })
       .catch((error) => {
@@ -82,9 +109,9 @@ function CandidatePage() {
         } else if (post === "assistant_publication_secretary") {
           setAPSCandidates(data.candidateList);
         }
-      }).finally(() => {
-        setTimeout(() =>
-        setLoading(false), 500);
+      })
+      .finally(() => {
+        setTimeout(() => setLoading(false), 500);
       });
   };
 
@@ -129,18 +156,17 @@ function CandidatePage() {
 
   return (
     <div>
-      {
-        loading? (
-            <div className="flex justify-center items-center flex-col	">
-            <img 
-              src={require('../assets/loading.gif')} 
-              alt="loading" 
-              className="w-80 mx-auto flex items-center"
-            />
-            <p>Please wait The ballot paper is being generated. </p>
-          </div>
-        ):
-        (<section className="text-gray-600 body-font">
+      {loading ? (
+        <div className="flex justify-center items-center flex-col	">
+          <img
+            src={require("../assets/loading.gif")}
+            alt="loading"
+            className="w-80 mx-auto flex items-center"
+          />
+          <p>Please wait The ballot paper is being generated. </p>
+        </div>
+      ) : (
+        <section className="text-gray-600 body-font">
           <div className="container px-5 py-24 mx-auto">
             {/* VP */}
             <div className="flex flex-wrap w-full my-9">
@@ -200,7 +226,8 @@ function CandidatePage() {
                 <div className="h-1 w-20 bg-blue-500 rounded"></div>
               </div>
               <p className="lg:w-1/2 w-full leading-relaxed text-gray-500">
-                Vote for your desired candidate for the post of General Secretary
+                Vote for your desired candidate for the post of General
+                Secretary
               </p>
             </div>
             <div className="flex justify-center flex-wrap -m-4">
@@ -299,15 +326,16 @@ function CandidatePage() {
                 <div className="h-1 w-20 bg-blue-500 rounded"></div>
               </div>
               <p className="lg:w-1/2 w-full leading-relaxed text-gray-500">
-                Vote for your desired candidate for the post of Assistant General
-                Secretary
+                Vote for your desired candidate for the post of Assistant
+                General Secretary
               </p>
             </div>
             <div className="flex justify-center flex-wrap -m-4">
               {agsCandidates.map((candidate) => (
                 <div
                   className={`xl:w-1/4 md:w-1/2 p-4 ${
-                    selectedAGS !== null && selectedAGS === candidate.candidateId
+                    selectedAGS !== null &&
+                    selectedAGS === candidate.candidateId
                       ? "border-4 border-green-600"
                       : ""
                   }`}
@@ -456,7 +484,8 @@ function CandidatePage() {
               {apsCandidates.map((candidate) => (
                 <div
                   className={`xl:w-1/4 md:w-1/2 p-4 ${
-                    selectedAPS !== null && selectedAPS === candidate.candidateId
+                    selectedAPS !== null &&
+                    selectedAPS === candidate.candidateId
                       ? "border-4 border-green-600"
                       : ""
                   }`}
@@ -505,7 +534,7 @@ function CandidatePage() {
               //   className="flex mx-auto mt-16 text-white bg-green-500 border-0 py-2 px-8 focus:outline-none hover:bg-green-600 rounded text-lg"
               // >
               <button
-                  onClick={()=>setShowModal(true)}
+                onClick={() => setShowModal(true)}
                 className="flex mx-auto mt-16 text-white bg-green-500 border-0 py-2 px-8 focus:outline-none hover:bg-green-600 rounded text-lg"
               >
                 SUBMIT VOTE
@@ -513,68 +542,107 @@ function CandidatePage() {
             )}
           </div>
           {showModal ? (
-        <>
-          <div
-            className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"
-          >
-            <div className="relative w-auto my-6 mx-auto max-w-3xl">
-              {/*content*/}
-              <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
-                {/*header*/}
-                <div className="flex items-start justify-between p-5 border-b border-solid border-blueGray-200 rounded-t">
-                  <h3 className="text-3xl font-semibold">
-                    Confirm Vote
-                  </h3>
-                  <button
-                    className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
-                    onClick={() => setShowModal(false)}
-                  >
-                    <span className="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">
-                      ×
-                    </span>
-                  </button>
-                </div>
-                {/*body*/}
-                <div className="relative p-6 flex-auto">
-                  <p className="my-4 text-blueGray-500 text-lg leading-relaxed">
-                    You are about to submit your vote for the following candidates:
-                  </p>
-                  <p className="my-4 text-blueGray-500 text-lg leading-relaxed">
-                    {/* Show which vp candidates has been selected with their name which can be obtain from vpCandidates with help of selectedVP which stores candidates id */}
-                    Vice President: {vpCandidates.find((candidate) => candidate.candidateId === selectedVP).candidateName} <br/>
-                    General Secretary: {gsCandidates.find((candidate) => candidate.candidateId === selectedGS).candidateName} <br/>
-                    Organizing Secretary: {osCandidates.find((candidate) => candidate.candidateId === selectedOS).candidateName} <br/>
-                    Assistant General Secretary: {agsCandidates.find((candidate) => candidate.candidateId === selectedAGS).candidateName} <br/>
-                    Sports Secretary: {ssCandidates.find((candidate) => candidate.candidateId === selectedSS).candidateName} <br/>
-                    Publication Secretary: {psCandidates.find((candidate) => candidate.candidateId === selectedPS).candidateName} <br/>
-                    Assistant Publication Secretary: {apsCandidates.find((candidate) => candidate.candidateId === selectedAPS).candidateName} <br/>
-                  </p>
-                </div>
-                {/*footer*/}
-                <div className="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">
-                  <button
-                    className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                    type="button"
-                    onClick={() => setShowModal(false)}
-                  >
-                    Close
-                  </button>
-                  <button
-                    className="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                    type="button"
-                    onClick={castVote}
-                  >
-                    Submit
-                  </button>
+            <>
+              <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
+                <div className="relative w-auto my-6 mx-auto max-w-3xl">
+                  {/*content*/}
+                  <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+                    {/*header*/}
+                    <div className="flex items-start justify-between p-5 border-b border-solid border-blueGray-200 rounded-t">
+                      <h3 className="text-3xl font-semibold">Confirm Vote</h3>
+                      <button
+                        className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
+                        onClick={() => setShowModal(false)}
+                      >
+                        <span className="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">
+                          ×
+                        </span>
+                      </button>
+                    </div>
+                    {/*body*/}
+                    <div className="relative p-6 flex-auto">
+                      <p className="my-4 text-blueGray-500 text-lg leading-relaxed">
+                        You are about to submit your vote for the following
+                        candidates:
+                      </p>
+                      <p className="my-4 text-blueGray-500 text-lg leading-relaxed">
+                        Vice President:{" "}
+                        {
+                          vpCandidates.find(
+                            (candidate) => candidate.candidateId === selectedVP
+                          ).candidateName
+                        }{" "}
+                        <br />
+                        General Secretary:{" "}
+                        {
+                          gsCandidates.find(
+                            (candidate) => candidate.candidateId === selectedGS
+                          ).candidateName
+                        }{" "}
+                        <br />
+                        Organizing Secretary:{" "}
+                        {
+                          osCandidates.find(
+                            (candidate) => candidate.candidateId === selectedOS
+                          ).candidateName
+                        }{" "}
+                        <br />
+                        Assistant General Secretary:{" "}
+                        {
+                          agsCandidates.find(
+                            (candidate) => candidate.candidateId === selectedAGS
+                          ).candidateName
+                        }{" "}
+                        <br />
+                        Sports Secretary:{" "}
+                        {
+                          ssCandidates.find(
+                            (candidate) => candidate.candidateId === selectedSS
+                          ).candidateName
+                        }{" "}
+                        <br />
+                        Publication Secretary:{" "}
+                        {
+                          psCandidates.find(
+                            (candidate) => candidate.candidateId === selectedPS
+                          ).candidateName
+                        }{" "}
+                        <br />
+                        Assistant Publication Secretary:{" "}
+                        {
+                          apsCandidates.find(
+                            (candidate) => candidate.candidateId === selectedAPS
+                          ).candidateName
+                        }{" "}
+                        <br />
+                      </p>
+                    </div>
+                    {/*footer*/}
+                    <div className="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">
+                      <button
+                        className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                        type="button"
+                        onClick={() => setShowModal(false)}
+                      >
+                        Close
+                      </button>
+                      <button
+                        className="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                        type="button"
+                        onClick={castVote}
+                      >
+                        Submit
+                      </button>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-          </div>
-          <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
-        </>
-      ) : null}
-        </section>)
-      }
+              <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
+            </>
+          ) : null}
+        </section>
+      )}
+      <ToastContainer />
     </div>
   );
 }
